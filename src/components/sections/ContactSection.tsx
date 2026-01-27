@@ -1,22 +1,28 @@
-import { Mail, Github, Linkedin, MapPin, Send } from 'lucide-react';
+import { Mail, Github, Linkedin, MapPin, Send, MessageCircle } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export const ContactSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="contacto" className="py-24 md:py-32 bg-card/30">
-      <div ref={ref} className="container mx-auto px-6">
+    <section id="contacto" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background gradient */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'var(--gradient-section-contact)' }}
+      />
+      
+      <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
             Contacto
           </span>
           <h2 className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}>
-            Hablemos
+            Hablemos de Arquitectura
           </h2>
           <p className={`mt-4 text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
-            ¿Tienes un proyecto en mente? Me encantaría escuchar sobre él.
+            ¿Tienes un desafío técnico? Me interesa escuchar sobre problemas de escalabilidad, deuda técnica o decisiones arquitectónicas.
           </p>
         </div>
 
@@ -24,8 +30,23 @@ export const ContactSection = () => {
           {/* Contact Info */}
           <div className={isVisible ? 'animate-slide-right stagger-3' : 'opacity-0'}>
             <h3 className="text-xl font-semibold text-foreground mb-6">
-              Información de Contacto
+              Conversemos sobre
             </h3>
+            
+            <div className="space-y-3 mb-8">
+              {[
+                'Arquitectura de sistemas distribuidos',
+                'Migración de monolitos a microservicios',
+                'Escalabilidad y performance',
+                'Deuda técnica y refactoring estratégico',
+                'MVPs con base sólida para escalar'
+              ].map((topic, index) => (
+                <div key={index} className="flex items-center gap-3 text-muted-foreground">
+                  <MessageCircle size={16} className="text-primary shrink-0" />
+                  <span>{topic}</span>
+                </div>
+              ))}
+            </div>
             
             <div className="space-y-4">
               <a
@@ -113,7 +134,7 @@ export const ContactSection = () => {
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  Mensaje
+                  ¿Qué desafío técnico enfrentas?
                 </label>
                 <textarea
                   id="message"
@@ -121,13 +142,13 @@ export const ContactSection = () => {
                   rows={4}
                   required
                   className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
-                  placeholder="Cuéntame sobre tu proyecto..."
+                  placeholder="Cuéntame sobre el problema técnico que quieres resolver..."
                 />
               </div>
 
               <button type="submit" className="btn-primary w-full">
                 <Send size={18} />
-                Enviar Mensaje
+                Iniciar Conversación
               </button>
             </form>
           </div>
