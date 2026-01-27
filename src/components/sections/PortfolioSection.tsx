@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ExternalLink, Github, X, ChevronRight } from 'lucide-react';
+import { ExternalLink, Github, X, ChevronRight, AlertTriangle, CheckCircle, Zap, Layers } from 'lucide-react';
 import { projects, type Project } from '@/data/projects';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
@@ -35,7 +35,7 @@ const ProjectCard = ({ project, onClick }: { project: Project; onClick: () => vo
       </div>
       
       <div className="flex items-center text-primary text-sm font-medium group-hover:gap-2 transition-all">
-        Ver detalles
+        Ver decisiones técnicas
         <ChevronRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
       </div>
     </article>
@@ -49,7 +49,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
       <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={onClose} />
       
       {/* Modal */}
-      <div className="relative glass-card max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 animate-scale-in">
+      <div className="relative glass-card max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 animate-scale-in">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-2 rounded-lg bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
@@ -68,43 +68,96 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
           {project.title}
         </h2>
         
-        <p className="text-muted-foreground mb-6">
+        <p className="text-muted-foreground mb-8">
           {project.fullDescription}
         </p>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           {/* Problem */}
-          <div>
-            <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-destructive" />
+          <div className="glass-card p-5 border-l-4 border-l-destructive/50">
+            <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
+              <AlertTriangle size={18} className="text-destructive" />
               Problema
             </h3>
-            <p className="text-muted-foreground pl-4">{project.problem}</p>
+            <p className="text-muted-foreground leading-relaxed">{project.problem}</p>
           </div>
 
           {/* Solution */}
-          <div>
-            <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-accent" />
-              Solución
+          <div className="glass-card p-5 border-l-4 border-l-accent/50">
+            <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
+              <CheckCircle size={18} className="text-accent" />
+              Solución Implementada
             </h3>
-            <p className="text-muted-foreground pl-4">{project.solution}</p>
+            <p className="text-muted-foreground leading-relaxed">{project.solution}</p>
+          </div>
+
+          {/* Impact */}
+          <div className="glass-card p-5 border-l-4 border-l-primary/50">
+            <h3 className="text-lg font-semibold text-foreground mb-3 flex items-center gap-2">
+              <Zap size={18} className="text-primary" />
+              Impacto Medible
+            </h3>
+            <ul className="space-y-2">
+              {project.impact.map((item, index) => (
+                <li key={index} className="text-muted-foreground flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Technical Decisions */}
           <div>
-            <h3 className="text-lg font-semibold text-foreground mb-2 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-primary" />
-              Decisiones Técnicas
+            <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+              <Layers size={18} className="text-primary" />
+              Decisiones Técnicas Clave
             </h3>
-            <ul className="space-y-2 pl-4">
+            <div className="space-y-4">
               {project.technicalDecisions.map((decision, index) => (
+                <div key={index} className="glass-card p-5">
+                  <div className="flex items-start gap-3">
+                    <span className="flex items-center justify-center w-7 h-7 rounded-full bg-primary/10 text-primary text-sm font-semibold shrink-0">
+                      {index + 1}
+                    </span>
+                    <div className="space-y-2">
+                      <p className="text-foreground font-medium">{decision.decision}</p>
+                      <p className="text-sm text-muted-foreground">
+                        <span className="text-destructive/80">Alternativa descartada:</span> {decision.alternative}
+                      </p>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        <span className="text-accent">Razón:</span> {decision.reasoning}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Ownership */}
+          <div>
+            <h3 className="text-lg font-semibold text-foreground mb-3">Mi Rol y Ownership</h3>
+            <ul className="space-y-2">
+              {project.ownership.map((item, index) => (
                 <li key={index} className="text-muted-foreground flex items-start gap-2">
-                  <ChevronRight size={16} className="text-primary mt-1 flex-shrink-0" />
-                  {decision}
+                  <ChevronRight size={16} className="text-primary mt-1 shrink-0" />
+                  {item}
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Patterns */}
+          <div>
+            <h3 className="text-lg font-semibold text-foreground mb-3">Patrones Arquitectónicos</h3>
+            <div className="flex flex-wrap gap-2">
+              {project.patterns.map((pattern) => (
+                <span key={pattern} className="skill-tag bg-primary/10 border-primary/30 text-primary">
+                  {pattern}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* Stack */}
@@ -155,18 +208,24 @@ export const PortfolioSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="portafolio" className="py-24 md:py-32">
-      <div ref={ref} className="container mx-auto px-6">
+    <section id="portafolio" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background gradient */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'var(--gradient-section-portfolio)' }}
+      />
+      
+      <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
             Portafolio
           </span>
           <h2 className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}>
-            Proyectos Destacados
+            Decisiones Técnicas en Producción
           </h2>
           <p className={`mt-4 text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
-            Una selección de proyectos donde la arquitectura, escalabilidad y buenas prácticas fueron fundamentales.
+            Proyectos donde la arquitectura, trade-offs y criterio técnico fueron fundamentales para el éxito.
           </p>
         </div>
 

@@ -9,10 +9,16 @@ export const HeroSection = () => {
       id="inicio"
       className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden"
     >
+      {/* Background gradient */}
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'var(--gradient-section-hero)' }}
+      />
+      
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1.5s' }} />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1.5s' }} />
       </div>
 
       {/* Grid Pattern */}
@@ -50,11 +56,11 @@ export const HeroSection = () => {
           {/* CTA Buttons */}
           <div className={`mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}>
             <a href="#portafolio" className="btn-primary">
-              Ver Portafolio
+              Ver Decisiones Técnicas
               <ArrowDown size={18} />
             </a>
             <a href="#contacto" className="btn-secondary">
-              Contactar
+              Hablemos de arquitectura
             </a>
           </div>
 
