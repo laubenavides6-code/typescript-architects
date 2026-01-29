@@ -59,51 +59,95 @@ export const ApproachSection = () => {
           </p>
         </div>
 
-        {/* Principles with stepper/timeline design */}
+        {/* Principles with stepper/timeline design - staggered columns */}
         <div className={`max-w-4xl mx-auto ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}>
           <div className="grid md:grid-cols-2 gap-x-12 gap-y-0">
-            {principles.map((principle, index) => {
-              const Icon = principle.icon;
-              const isLeft = index % 2 === 0;
+            {/* Left column */}
+            <div className="relative">
+              {/* Vertical line for left column */}
+              <div className="hidden md:block absolute right-0 top-0 w-px h-full bg-gradient-to-b from-border/50 via-border to-border/50" />
               
-              return (
-                <div 
-                  key={principle.title} 
-                  className={`relative py-6 ${isLeft ? 'md:pr-8' : 'md:pl-8'}`}
-                >
-                  {/* Vertical line */}
-                  <div className={`hidden md:block absolute top-0 ${isLeft ? 'right-0' : 'left-0'} w-px h-full bg-gradient-to-b from-border/50 via-border to-border/50`} />
-                  
-                  {/* Horizontal connector dot */}
-                  <div className={`hidden md:block absolute top-8 ${isLeft ? '-right-1.5' : '-left-1.5'} w-3 h-3 rounded-full bg-primary border-2 border-background`} />
-                  
-                  {/* Mobile vertical line */}
-                  <div className="md:hidden absolute left-5 top-0 w-px h-full bg-gradient-to-b from-border/50 via-border to-border/50" />
-                  
-                  {/* Content */}
-                  <div className="flex items-start gap-4 md:gap-3">
-                    {/* Icon with step number */}
-                    <div className="relative shrink-0 z-10">
-                      <div className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center">
-                        <Icon size={18} className="text-primary" />
-                      </div>
-                      <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
-                        {index + 1}
-                      </span>
-                    </div>
+              {principles.filter((_, i) => i % 2 === 0).map((principle, idx) => {
+                const Icon = principle.icon;
+                const originalIndex = idx * 2;
+                
+                return (
+                  <div 
+                    key={principle.title} 
+                    className="relative py-6 md:pr-8"
+                  >
+                    {/* Horizontal connector dot */}
+                    <div className="hidden md:block absolute top-8 -right-1.5 w-3 h-3 rounded-full bg-primary border-2 border-background" />
                     
-                    <div className="flex-1 pt-1">
-                      <h3 className="text-sm font-semibold text-foreground mb-1.5">
-                        {principle.title}
-                      </h3>
-                      <p className="text-muted-foreground text-xs leading-relaxed">
-                        {principle.description}
-                      </p>
+                    {/* Mobile vertical line */}
+                    <div className="md:hidden absolute left-5 top-0 w-px h-full bg-gradient-to-b from-border/50 via-border to-border/50" />
+                    
+                    {/* Content */}
+                    <div className="flex items-start gap-4 md:gap-3">
+                      <div className="relative shrink-0 z-10">
+                        <div className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center">
+                          <Icon size={18} className="text-primary" />
+                        </div>
+                        <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
+                          {originalIndex + 1}
+                        </span>
+                      </div>
+                      
+                      <div className="flex-1 pt-1">
+                        <h3 className="text-sm font-semibold text-foreground mb-1.5">
+                          {principle.title}
+                        </h3>
+                        <p className="text-muted-foreground text-xs leading-relaxed">
+                          {principle.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+            
+            {/* Right column - offset down */}
+            <div className="relative md:mt-12">
+              {principles.filter((_, i) => i % 2 === 1).map((principle, idx) => {
+                const Icon = principle.icon;
+                const originalIndex = idx * 2 + 1;
+                
+                return (
+                  <div 
+                    key={principle.title} 
+                    className="relative py-6 md:pl-8"
+                  >
+                    {/* Horizontal connector dot */}
+                    <div className="hidden md:block absolute top-8 -left-1.5 w-3 h-3 rounded-full bg-primary border-2 border-background" />
+                    
+                    {/* Mobile vertical line */}
+                    <div className="md:hidden absolute left-5 top-0 w-px h-full bg-gradient-to-b from-border/50 via-border to-border/50" />
+                    
+                    {/* Content */}
+                    <div className="flex items-start gap-4 md:gap-3">
+                      <div className="relative shrink-0 z-10">
+                        <div className="w-10 h-10 rounded-full bg-card border border-border flex items-center justify-center">
+                          <Icon size={18} className="text-primary" />
+                        </div>
+                        <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center">
+                          {originalIndex + 1}
+                        </span>
+                      </div>
+                      
+                      <div className="flex-1 pt-1">
+                        <h3 className="text-sm font-semibold text-foreground mb-1.5">
+                          {principle.title}
+                        </h3>
+                        <p className="text-muted-foreground text-xs leading-relaxed">
+                          {principle.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
