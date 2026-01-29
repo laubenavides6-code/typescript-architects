@@ -5,7 +5,7 @@ export const ContactSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="contacto" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="contact" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background gradient */}
       <div 
         className="absolute inset-0 pointer-events-none"
@@ -16,13 +16,13 @@ export const ContactSection = () => {
         {/* Section Header */}
         <div className="text-center mb-14">
           <span className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
-            Contacto
+            Contact
           </span>
           <h2 className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}>
-            Hablemos de Arquitectura
+            Let's Talk Architecture
           </h2>
           <p className={`mt-4 text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
-            ¿Tienes un desafío técnico? Me interesa escuchar sobre problemas de escalabilidad, deuda técnica o decisiones arquitectónicas.
+            Have a technical challenge? I'm interested in hearing about scalability issues, technical debt or architectural decisions.
           </p>
         </div>
 
@@ -30,22 +30,30 @@ export const ContactSection = () => {
           {/* Contact Info */}
           <div className={isVisible ? 'animate-slide-right stagger-3' : 'opacity-0'}>
             <h3 className="text-lg font-semibold text-foreground mb-5">
-              Conversemos sobre
+              Let's discuss
             </h3>
             
-            <div className="space-y-2.5 mb-8">
-              {[
-                'Arquitectura de sistemas distribuidos',
-                'Migración de monolitos a microservicios',
-                'Escalabilidad y performance',
-                'Deuda técnica y refactoring estratégico',
-                'MVPs con base sólida para escalar'
-              ].map((topic, index) => (
-                <div key={index} className="flex items-center gap-2.5 text-muted-foreground text-sm">
-                  <MessageCircle size={14} className="text-primary shrink-0" />
-                  <span>{topic}</span>
-                </div>
-              ))}
+            {/* Topics with vertical stepper */}
+            <div className="relative mb-8">
+              {/* Vertical line */}
+              <div className="absolute left-[7px] top-2 bottom-2 w-px bg-gradient-to-b from-primary/50 via-border to-transparent" />
+              
+              <div className="space-y-3">
+                {[
+                  'Distributed systems architecture',
+                  'Monolith to microservices migration',
+                  'Scalability and performance',
+                  'Technical debt and strategic refactoring',
+                  'MVPs with solid foundation to scale'
+                ].map((topic, index) => (
+                  <div key={index} className="flex items-center gap-3 text-muted-foreground text-sm">
+                    <div className="w-[15px] h-[15px] rounded-full border-2 border-primary/50 bg-background flex items-center justify-center shrink-0">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    </div>
+                    <span>{topic}</span>
+                  </div>
+                ))}
+              </div>
             </div>
             
             <div className="space-y-3">
@@ -67,8 +75,8 @@ export const ContactSection = () => {
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">Ubicación</p>
-                  <p className="text-foreground text-sm font-medium">Remoto / Global</p>
+                  <p className="text-xs text-muted-foreground">Location</p>
+                  <p className="text-foreground text-sm font-medium">Remote / Global</p>
                 </div>
               </div>
             </div>
@@ -76,7 +84,7 @@ export const ContactSection = () => {
             {/* Social Links */}
             <div className="mt-8">
               <h4 className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">
-                También en
+                Also on
               </h4>
               <div className="flex gap-3">
                 <a
@@ -106,7 +114,7 @@ export const ContactSection = () => {
             <form className="glass-card p-5 space-y-5">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                  Nombre
+                  Name
                 </label>
                 <input
                   type="text"
@@ -114,7 +122,7 @@ export const ContactSection = () => {
                   name="name"
                   required
                   className="w-full px-4 py-2.5 rounded-md bg-secondary/50 border border-border/50 text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all"
-                  placeholder="Tu nombre"
+                  placeholder="Your name"
                 />
               </div>
 
@@ -128,13 +136,13 @@ export const ContactSection = () => {
                   name="email"
                   required
                   className="w-full px-4 py-2.5 rounded-md bg-secondary/50 border border-border/50 text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all"
-                  placeholder="tu@email.com"
+                  placeholder="you@email.com"
                 />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                  ¿Qué desafío técnico enfrentas?
+                  What technical challenge are you facing?
                 </label>
                 <textarea
                   id="message"
@@ -142,13 +150,13 @@ export const ContactSection = () => {
                   rows={4}
                   required
                   className="w-full px-4 py-2.5 rounded-md bg-secondary/50 border border-border/50 text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all resize-none"
-                  placeholder="Cuéntame sobre el problema técnico que quieres resolver..."
+                  placeholder="Tell me about the technical problem you want to solve..."
                 />
               </div>
 
               <button type="submit" className="btn-primary w-full py-2.5">
                 <Send size={16} />
-                Iniciar Conversación
+                Start Conversation
               </button>
             </form>
           </div>

@@ -42,7 +42,7 @@ const ProjectCard = ({ project, onClick }: { project: Project; onClick: () => vo
       
       {/* CTA */}
       <div className="flex items-center text-primary text-sm font-medium gap-1 group-hover:gap-2 transition-all">
-        Ver decisiones técnicas
+        View technical decisions
         <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
       </div>
     </article>
@@ -60,7 +60,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
         <button
           onClick={onClose}
           className="absolute top-4 right-4 p-2 rounded-md bg-secondary/60 text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
-          aria-label="Cerrar"
+          aria-label="Close"
         >
           <X size={18} />
         </button>
@@ -80,7 +80,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
           <div className="p-5 rounded-lg bg-secondary/30 border-l-2 border-l-destructive/40">
             <h3 className="text-base font-semibold text-foreground mb-2 flex items-center gap-2">
               <AlertTriangle size={16} className="text-destructive/70" />
-              Problema
+              Problem
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed">{project.problem}</p>
           </div>
@@ -89,7 +89,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
           <div className="p-5 rounded-lg bg-secondary/30 border-l-2 border-l-accent/40">
             <h3 className="text-base font-semibold text-foreground mb-2 flex items-center gap-2">
               <CheckCircle size={16} className="text-accent/80" />
-              Solución Implementada
+              Solution Implemented
             </h3>
             <p className="text-muted-foreground text-sm leading-relaxed">{project.solution}</p>
           </div>
@@ -98,7 +98,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
           <div className="p-5 rounded-lg bg-secondary/30 border-l-2 border-l-primary/40">
             <h3 className="text-base font-semibold text-foreground mb-3 flex items-center gap-2">
               <Zap size={16} className="text-primary/80" />
-              Impacto Medible
+              Measurable Impact
             </h3>
             <ul className="space-y-2">
               {project.impact.map((item, index) => (
@@ -114,7 +114,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
           <div>
             <h3 className="text-base font-semibold text-foreground mb-4 flex items-center gap-2">
               <Layers size={16} className="text-primary/80" />
-              Decisiones Técnicas Clave
+              Key Technical Decisions
             </h3>
             <div className="space-y-3">
               {project.technicalDecisions.map((decision, index) => (
@@ -126,10 +126,10 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
                     <div className="space-y-1.5">
                       <p className="text-foreground text-sm font-medium">{decision.decision}</p>
                       <p className="text-xs text-muted-foreground">
-                        <span className="text-destructive/60">Alternativa descartada:</span> {decision.alternative}
+                        <span className="text-destructive/60">Discarded alternative:</span> {decision.alternative}
                       </p>
                       <p className="text-xs text-muted-foreground leading-relaxed">
-                        <span className="text-accent/70">Razón:</span> {decision.reasoning}
+                        <span className="text-accent/70">Reason:</span> {decision.reasoning}
                       </p>
                     </div>
                   </div>
@@ -140,7 +140,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
 
           {/* Ownership */}
           <div>
-            <h3 className="text-base font-semibold text-foreground mb-3">Mi Rol y Ownership</h3>
+            <h3 className="text-base font-semibold text-foreground mb-3">My Role & Ownership</h3>
             <ul className="space-y-2">
               {project.ownership.map((item, index) => (
                 <li key={index} className="text-muted-foreground text-sm flex items-start gap-2">
@@ -154,7 +154,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
           {/* Patterns & Stack */}
           <div className="grid sm:grid-cols-2 gap-4">
             <div>
-              <h3 className="text-sm font-semibold text-foreground mb-3">Patrones Arquitectónicos</h3>
+              <h3 className="text-sm font-semibold text-foreground mb-3">Architectural Patterns</h3>
               <div className="flex flex-wrap gap-1.5">
                 {project.patterns.map((pattern) => (
                   <span key={pattern} className="px-2.5 py-1 rounded text-xs font-medium bg-primary/10 border border-primary/20 text-primary">
@@ -164,7 +164,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
               </div>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-foreground mb-3">Stack Tecnológico</h3>
+              <h3 className="text-sm font-semibold text-foreground mb-3">Tech Stack</h3>
               <div className="flex flex-wrap gap-1.5">
                 {project.stack.map((tech) => (
                   <span key={tech} className="px-2.5 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/30">
@@ -185,7 +185,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
                 className="btn-primary py-2.5"
               >
                 <ExternalLink size={16} />
-                Ver Proyecto
+                View Project
               </a>
             )}
             {project.repoUrl && (
@@ -196,7 +196,7 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
                 className="btn-secondary py-2.5"
               >
                 <Github size={16} />
-                Código
+                Code
               </a>
             )}
           </div>
@@ -211,7 +211,7 @@ export const PortfolioSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="portafolio" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="portfolio" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background gradient */}
       <div 
         className="absolute inset-0 pointer-events-none"
@@ -222,13 +222,13 @@ export const PortfolioSection = () => {
         {/* Section Header */}
         <div className="text-center mb-14">
           <span className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
-            Portafolio
+            Portfolio
           </span>
           <h2 className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}>
-            Decisiones Técnicas en Producción
+            Technical Decisions in Production
           </h2>
           <p className={`mt-4 text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
-            Proyectos donde la arquitectura, trade-offs y criterio técnico fueron fundamentales para el éxito.
+            Projects where architecture, trade-offs and technical judgment were key to success.
           </p>
         </div>
 
