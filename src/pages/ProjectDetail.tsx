@@ -145,21 +145,6 @@ const ProjectDetail = () => {
                 </div>
               </article>
 
-              {/* Impact */}
-              <article className="glass-card p-6">
-                <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <Zap size={18} className="text-primary" />
-                  Measurable Impact
-                </h2>
-                <ul className="grid sm:grid-cols-2 gap-3">
-                  {project.impact.map((item, index) => (
-                    <li key={index} className="flex items-start gap-3 p-3 rounded-lg bg-secondary/30">
-                      <ChevronRight size={16} className="text-primary mt-0.5 shrink-0" />
-                      <span className="text-muted-foreground text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </article>
 
               {/* My Role */}
               <article className="glass-card p-6">
@@ -182,6 +167,22 @@ const ProjectDetail = () => {
 
             {/* Right column - Sidebar */}
             <aside className="space-y-6">
+              {/* Impact */}
+              <div className="glass-card p-5">
+                <h3 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider flex items-center gap-2">
+                  <Zap size={16} className="text-primary" />
+                  Measurable Impact
+                </h3>
+                <ul className="space-y-2">
+                  {project.impact.map((item, index) => (
+                    <li key={index} className="flex items-start gap-2 text-muted-foreground text-sm">
+                      <ChevronRight size={14} className="text-primary mt-0.5 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
               {/* Tech Stack */}
               <div className="glass-card p-5">
                 <h3 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">Tech Stack</h3>
