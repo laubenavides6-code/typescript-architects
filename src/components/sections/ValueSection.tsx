@@ -44,11 +44,11 @@ export const ValueSection = () => {
           </p>
         </div>
 
-        {/* Values with vertical line connector */}
+        {/* Values with horizontal stepper line */}
         <div className={`max-w-4xl mx-auto ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}>
           <div className="relative">
-            {/* Horizontal line connecting all values */}
-            <div className="hidden md:block absolute top-5 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+            {/* Horizontal stepper line connecting all values */}
+            <div className="hidden md:block absolute top-5 left-[16.66%] right-[16.66%] h-0.5 bg-gradient-to-r from-primary/60 via-primary to-primary/60" />
             
             <div className="grid md:grid-cols-3 gap-8">
               {values.map((value, index) => {
@@ -56,13 +56,17 @@ export const ValueSection = () => {
                 
                 return (
                   <div key={value.title} className="relative text-center">
-                    {/* Icon with connector dot */}
+                    {/* Stepper dot on the line */}
                     <div className="relative inline-flex mb-5">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center relative z-10 bg-background">
+                      {/* Outer ring */}
+                      <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-background border-2 border-primary z-20" />
+                      {/* Inner dot */}
+                      <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary z-30" />
+                      
+                      {/* Icon below the line */}
+                      <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center relative z-10 bg-background mt-6 md:mt-8">
                         <Icon size={20} className="text-primary" />
                       </div>
-                      {/* Dot on the line */}
-                      <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary z-20" />
                     </div>
                     
                     <h3 className="text-base font-semibold text-foreground mb-2">

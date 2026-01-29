@@ -33,64 +33,51 @@ export const SkillsSection = () => {
           </p>
         </div>
 
-        {/* Skills Grid - Unified card design */}
-        <div className={`glass-card p-6 md:p-8 max-w-5xl mx-auto ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}>
-          <div className="grid md:grid-cols-3 gap-8">
-            {skillTiers.map((tier, tierIndex) => {
-              const Icon = iconMap[tier.icon] || Target;
-              
-              return (
-                <div key={tier.id} className="relative">
-                  {/* Vertical line connector for desktop */}
-                  {tierIndex < skillTiers.length - 1 && (
-                    <div className="hidden md:block absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-border to-transparent" />
-                  )}
-                  
-                  {/* Tier Header with step indicator */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="relative">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
-                        <Icon size={18} className="text-primary" />
-                      </div>
-                      {/* Dot indicator */}
-                      <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-primary border-2 border-background" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold text-foreground">
-                        {tier.name}
-                      </h3>
-                      <p className="text-xs text-muted-foreground">
-                        {tier.description}
-                      </p>
-                    </div>
+        {/* Skills Grid - Card per tier */}
+        <div className={`grid md:grid-cols-3 gap-6 max-w-5xl mx-auto ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}>
+          {skillTiers.map((tier) => {
+            const Icon = iconMap[tier.icon] || Target;
+            
+            return (
+              <div key={tier.id} className="glass-card p-5">
+                {/* Tier Header */}
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
+                    <Icon size={18} className="text-primary" />
                   </div>
-
-                  {/* Skills as compact grid */}
-                  <div className="grid grid-cols-2 gap-1.5 pl-[52px]">
-                    {tier.skills.map((skill) => (
-                      <span 
-                        key={skill} 
-                        className="px-2 py-1 rounded text-xs font-medium bg-secondary/50 text-muted-foreground border border-border/30 text-center truncate"
-                      >
-                        {skill}
-                      </span>
-                    ))}
+                  <div>
+                    <h3 className="text-sm font-semibold text-foreground">
+                      {tier.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground">
+                      {tier.description}
+                    </p>
                   </div>
                 </div>
-              );
-            })}
-          </div>
-          
-          {/* Horizontal separator */}
-          <div className="my-8 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-          
-          {/* Architecture Patterns - inline with the grid */}
+
+                {/* Skills as compact grid */}
+                <div className="grid grid-cols-2 gap-1.5">
+                  {tier.skills.map((skill) => (
+                    <span 
+                      key={skill} 
+                      className="px-2 py-1.5 rounded text-xs font-medium bg-secondary/50 text-muted-foreground border border-border/30 text-center truncate"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        
+        {/* Architecture Patterns - Card */}
+        <div className={`glass-card p-5 max-w-5xl mx-auto mt-6 ${isVisible ? 'animate-fade-up stagger-4' : 'opacity-0'}`}>
           <div className="flex items-start gap-3">
-            <div className="relative shrink-0">
+            <div className="shrink-0">
               <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center">
                 <Boxes size={18} className="text-accent" />
               </div>
-              <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-accent border-2 border-background" />
             </div>
             <div className="flex-1">
               <h3 className="text-sm font-semibold text-foreground mb-1">
