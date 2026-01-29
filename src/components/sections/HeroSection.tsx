@@ -6,7 +6,7 @@ export const HeroSection = () => {
 
   return (
     <section
-      id="inicio"
+      id="home"
       className="relative min-h-screen flex items-center pt-20 overflow-hidden"
     >
       {/* Background gradient */}
@@ -34,7 +34,7 @@ export const HeroSection = () => {
             <div className={`${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
               <span className="section-badge">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-                Disponible para nuevos proyectos
+                Available for new projects
               </span>
             </div>
 
@@ -52,20 +52,17 @@ export const HeroSection = () => {
 
             {/* Description */}
             <p className={`mt-6 text-base md:text-lg text-muted-foreground max-w-lg leading-relaxed ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
-              Construyo soluciones robustas y escalables con enfoque en{' '}
-              <span className="text-foreground">arquitectura limpia</span>,{' '}
-              <span className="text-foreground">buenas prácticas</span> y{' '}
-              <span className="text-foreground">pensamiento sistémico</span>.
+              I build robust and scalable solutions with a focus on{' '}
+              <span className="text-foreground">clean architecture</span>,{' '}
+              <span className="text-foreground">best practices</span> and{' '}
+              <span className="text-foreground">systems thinking</span>.
             </p>
 
-            {/* CTA Buttons */}
-            <div className={`mt-10 flex flex-col sm:flex-row items-start gap-4 ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}>
-              <a href="#portafolio" className="btn-primary">
-                Ver Decisiones Técnicas
+            {/* CTA Button */}
+            <div className={`mt-10 ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}>
+              <a href="#portfolio" className="btn-primary">
+                View Technical Decisions
                 <ArrowDown size={16} />
-              </a>
-              <a href="#contacto" className="btn-secondary">
-                Hablemos de arquitectura
               </a>
             </div>
 
@@ -154,25 +151,8 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        {/* Tech stack strip */}
-        <div className={`mt-16 lg:mt-24 ${isVisible ? 'animate-fade-up stagger-5' : 'opacity-0'}`}>
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-8 gap-y-3 text-muted-foreground/60 text-sm font-medium">
-            <span>TypeScript</span>
-            <span className="hidden sm:block w-1 h-1 rounded-full bg-border" />
-            <span>React</span>
-            <span className="hidden sm:block w-1 h-1 rounded-full bg-border" />
-            <span>Node.js</span>
-            <span className="hidden sm:block w-1 h-1 rounded-full bg-border" />
-            <span>NestJS</span>
-            <span className="hidden sm:block w-1 h-1 rounded-full bg-border" />
-            <span>PostgreSQL</span>
-            <span className="hidden sm:block w-1 h-1 rounded-full bg-border" />
-            <span>AWS</span>
-          </div>
-        </div>
-
         {/* Scroll Indicator */}
-        <div className={`hidden lg:flex absolute bottom-12 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground ${isVisible ? 'animate-fade-up stagger-6' : 'opacity-0'}`}>
+        <div className={`hidden lg:flex absolute bottom-12 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground ${isVisible ? 'animate-fade-up stagger-5' : 'opacity-0'}`}>
           <div className="w-5 h-8 rounded-full border border-border/50 flex items-start justify-center p-1">
             <div className="w-1 h-2 rounded-full bg-primary/60 animate-bounce" />
           </div>

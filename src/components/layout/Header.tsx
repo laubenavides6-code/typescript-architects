@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
-  { href: '#inicio', label: 'Inicio' },
-  { href: '#portafolio', label: 'Portafolio' },
+  { href: '#home', label: 'Home' },
+  { href: '#portfolio', label: 'Portfolio' },
   { href: '#skills', label: 'Skills' },
-  { href: '#enfoque', label: 'Enfoque' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '#approach', label: 'Approach' },
+  { href: '#contact', label: 'Contact' },
 ];
 
 export const Header = () => {
@@ -30,7 +30,7 @@ export const Header = () => {
       <div className="container mx-auto px-6">
         <nav className="flex items-center justify-between h-16 md:h-18">
           {/* Logo */}
-          <a href="#inicio" className="text-lg font-bold text-foreground hover:text-primary transition-colors">
+          <a href="#home" className="text-lg font-bold text-foreground hover:text-primary transition-colors">
             {'<Dev />'}
           </a>
 
@@ -49,8 +49,8 @@ export const Header = () => {
           </ul>
 
           {/* CTA Button */}
-          <a href="#contacto" className="hidden md:inline-flex btn-primary text-sm py-2 px-5">
-            Hablemos
+          <a href="#contact" className="hidden md:inline-flex btn-primary text-sm py-2 px-5">
+            Let's Talk
           </a>
 
           {/* Mobile Menu Button */}
@@ -79,8 +79,8 @@ export const Header = () => {
                 </li>
               ))}
               <li className="px-6 py-3">
-                <a href="#contacto" onClick={() => setIsMobileMenuOpen(false)} className="btn-primary w-full text-center text-sm">
-                  Hablemos
+                <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} className="btn-primary w-full text-center text-sm">
+                  Let's Talk
                 </a>
               </li>
             </ul>

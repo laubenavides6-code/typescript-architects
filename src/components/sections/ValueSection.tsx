@@ -1,21 +1,21 @@
-import { Target, Brain, Users, MessageSquare } from 'lucide-react';
+import { Target, Brain, Users } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const values = [
   {
     icon: Target,
-    title: 'Soluciones Robustas',
-    description: 'Código limpio, testeable y mantenible. Cada línea tiene un propósito y está diseñada para durar.',
+    title: 'Robust Solutions',
+    description: 'Clean, testable and maintainable code. Every line has a purpose and is designed to last.',
   },
   {
     icon: Brain,
-    title: 'Pensamiento Sistémico',
-    description: 'Veo el panorama completo. Diseño arquitecturas que escalan y anticipan necesidades futuras.',
+    title: 'Systems Thinking',
+    description: 'I see the big picture. I design architectures that scale and anticipate future needs.',
   },
   {
     icon: Users,
-    title: 'Liderazgo Técnico',
-    description: 'Guío equipos hacia mejores prácticas. Mentoría, code reviews y establecimiento de estándares.',
+    title: 'Technical Leadership',
+    description: 'I guide teams towards best practices. Mentoring, code reviews and establishing standards.',
   },
 ];
 
@@ -23,7 +23,7 @@ export const ValueSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="propuesta" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="value" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background gradient */}
       <div 
         className="absolute inset-0 pointer-events-none"
@@ -34,56 +34,49 @@ export const ValueSection = () => {
         {/* Section Header */}
         <div className="text-center mb-14">
           <span className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
-            Propuesta de Valor
+            Value Proposition
           </span>
           <h2 className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}>
-            Lo Que Ofrezco
+            What I Offer
           </h2>
           <p className={`mt-4 text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
-            Más que código: un enfoque integral para resolver problemas complejos con soluciones elegantes.
+            More than code: a comprehensive approach to solving complex problems with elegant solutions.
           </p>
         </div>
 
-        {/* Values Grid */}
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {values.map((value, index) => {
-            const Icon = value.icon;
+        {/* Values with vertical line connector */}
+        <div className={`max-w-4xl mx-auto ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}>
+          <div className="relative">
+            {/* Horizontal line connecting all values */}
+            <div className="hidden md:block absolute top-5 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
             
-            return (
-              <div
-                key={value.title}
-                className={`text-center ${isVisible ? `animate-fade-up stagger-${index + 3}` : 'opacity-0'}`}
-              >
-                <div className="inline-flex p-4 rounded-lg bg-gradient-to-br from-primary/15 to-accent/10 mb-5">
-                  <Icon size={28} className="text-primary" />
-                </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {values.map((value, index) => {
+                const Icon = value.icon;
                 
-                <h3 className="text-lg font-semibold text-foreground mb-2">
-                  {value.title}
-                </h3>
-                
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {value.description}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* CTA Card */}
-        <div className={`mt-16 glass-card p-8 md:p-10 text-center max-w-3xl mx-auto ${isVisible ? 'animate-fade-up stagger-6' : 'opacity-0'}`}>
-          <div className="inline-flex p-3 rounded-lg bg-primary/10 text-primary mb-5">
-            <MessageSquare size={24} />
+                return (
+                  <div key={value.title} className="relative text-center">
+                    {/* Icon with connector dot */}
+                    <div className="relative inline-flex mb-5">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center relative z-10 bg-background">
+                        <Icon size={20} className="text-primary" />
+                      </div>
+                      {/* Dot on the line */}
+                      <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-primary z-20" />
+                    </div>
+                    
+                    <h3 className="text-base font-semibold text-foreground mb-2">
+                      {value.title}
+                    </h3>
+                    
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {value.description}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
-            ¿Enfrentas desafíos técnicos complejos?
-          </h3>
-          <p className="text-muted-foreground mb-6 max-w-xl mx-auto text-sm leading-relaxed">
-            Escalabilidad, deuda técnica, arquitectura de sistemas distribuidos o MVPs con proyección real. Hablemos de cómo resolver problemas, no solo de escribir código.
-          </p>
-          <a href="#contacto" className="btn-primary">
-            Conversemos sobre tu arquitectura
-          </a>
         </div>
       </div>
     </section>

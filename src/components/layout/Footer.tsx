@@ -9,9 +9,9 @@ export const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Copyright */}
           <div className="flex items-center gap-1 text-muted-foreground text-xs">
-            <span>© {currentYear} Hecho con</span>
+            <span>© {currentYear} Made with</span>
             <Heart size={12} className="text-primary fill-primary" />
-            <span>y TypeScript</span>
+            <span>and TypeScript</span>
           </div>
 
           {/* Social Links */}

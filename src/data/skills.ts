@@ -9,8 +9,8 @@ export interface SkillTier {
 export const skillTiers: SkillTier[] = [
   {
     id: 'leadership',
-    name: 'Decisiones Técnicas',
-    description: 'Tecnologías donde he liderado arquitectura y establecido estándares',
+    name: 'Technical Decisions',
+    description: 'Technologies where I led architecture and set standards',
     icon: 'Target',
     skills: [
       'TypeScript',
@@ -19,14 +19,14 @@ export const skillTiers: SkillTier[] = [
       'PostgreSQL',
       'Event Sourcing',
       'CQRS',
-      'Microservicios',
+      'Microservices',
       'API Design'
     ]
   },
   {
     id: 'production',
-    name: 'Experiencia Productiva',
-    description: 'Tecnologías utilizadas extensivamente en sistemas en producción',
+    name: 'Production Experience',
+    description: 'Technologies used extensively in production systems',
     icon: 'Zap',
     skills: [
       'Next.js',
@@ -41,8 +41,8 @@ export const skillTiers: SkillTier[] = [
   },
   {
     id: 'complementary',
-    name: 'Herramientas Complementarias',
-    description: 'Stack de soporte para desarrollo, testing y operaciones',
+    name: 'Complementary Tools',
+    description: 'Support stack for development, testing and operations',
     icon: 'Wrench',
     skills: [
       'Tailwind CSS',

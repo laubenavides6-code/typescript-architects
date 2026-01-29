@@ -23,74 +23,90 @@ export const SkillsSection = () => {
         {/* Section Header */}
         <div className="text-center mb-14">
           <span className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
-            Conocimientos
+            Skills
           </span>
           <h2 className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}>
-            Stack Técnico por Nivel de Expertise
+            Technical Stack by Expertise Level
           </h2>
           <p className={`mt-4 text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
-            Tecnologías organizadas por profundidad de experiencia y responsabilidad técnica.
+            Technologies organized by depth of experience and technical responsibility.
           </p>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-3 gap-5 max-w-6xl mx-auto mb-10">
-          {skillTiers.map((tier, tierIndex) => {
-            const Icon = iconMap[tier.icon] || Target;
-            
-            return (
-              <div
-                key={tier.id}
-                className={`glass-card p-5 ${isVisible ? `animate-fade-up stagger-${tierIndex + 3}` : 'opacity-0'}`}
-              >
-                {/* Tier Header */}
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="p-2.5 rounded-md bg-primary/10 text-primary">
-                    <Icon size={20} />
+        {/* Skills Grid - Unified card design */}
+        <div className={`glass-card p-6 md:p-8 max-w-5xl mx-auto ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}>
+          <div className="grid md:grid-cols-3 gap-8">
+            {skillTiers.map((tier, tierIndex) => {
+              const Icon = iconMap[tier.icon] || Target;
+              
+              return (
+                <div key={tier.id} className="relative">
+                  {/* Vertical line connector for desktop */}
+                  {tierIndex < skillTiers.length - 1 && (
+                    <div className="hidden md:block absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-border to-transparent" />
+                  )}
+                  
+                  {/* Tier Header with step indicator */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="relative">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
+                        <Icon size={18} className="text-primary" />
+                      </div>
+                      {/* Dot indicator */}
+                      <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-primary border-2 border-background" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-semibold text-foreground">
+                        {tier.name}
+                      </h3>
+                      <p className="text-xs text-muted-foreground">
+                        {tier.description}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="text-base font-semibold text-foreground">
-                    {tier.name}
-                  </h3>
-                </div>
-                
-                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                  {tier.description}
-                </p>
 
-                {/* Skills List */}
-                <div className="flex flex-wrap gap-1.5">
-                  {tier.skills.map((skill) => (
-                    <span key={skill} className="skill-tag text-xs">
-                      {skill}
-                    </span>
-                  ))}
+                  {/* Skills as compact grid */}
+                  <div className="grid grid-cols-2 gap-1.5 pl-[52px]">
+                    {tier.skills.map((skill) => (
+                      <span 
+                        key={skill} 
+                        className="px-2 py-1 rounded text-xs font-medium bg-secondary/50 text-muted-foreground border border-border/30 text-center truncate"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Architecture Patterns */}
-        <div className={`glass-card p-5 max-w-4xl mx-auto ${isVisible ? 'animate-fade-up stagger-6' : 'opacity-0'}`}>
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2.5 rounded-md bg-accent/10 text-accent">
-              <Boxes size={20} />
-            </div>
-            <div>
-              <h3 className="text-base font-semibold text-foreground">
-                Patrones Arquitectónicos
-              </h3>
-              <p className="text-xs text-muted-foreground">
-                Patrones implementados en sistemas productivos
-              </p>
-            </div>
+              );
+            })}
           </div>
-          <div className="flex flex-wrap gap-1.5">
-            {architecturePatterns.map((pattern) => (
-              <span key={pattern} className="px-2.5 py-1 rounded text-xs font-medium bg-accent/10 border border-accent/20 text-accent">
-                {pattern}
-              </span>
-            ))}
+          
+          {/* Horizontal separator */}
+          <div className="my-8 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+          
+          {/* Architecture Patterns - inline with the grid */}
+          <div className="flex items-start gap-3">
+            <div className="relative shrink-0">
+              <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center">
+                <Boxes size={18} className="text-accent" />
+              </div>
+              <div className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-accent border-2 border-background" />
+            </div>
+            <div className="flex-1">
+              <h3 className="text-sm font-semibold text-foreground mb-1">
+                Architectural Patterns
+              </h3>
+              <p className="text-xs text-muted-foreground mb-3">
+                Patterns implemented in production systems
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {architecturePatterns.map((pattern) => (
+                  <span key={pattern} className="px-2.5 py-1 rounded text-xs font-medium bg-accent/10 border border-accent/20 text-accent">
+                    {pattern}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
