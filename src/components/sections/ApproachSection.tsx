@@ -70,6 +70,7 @@ export const ApproachSection = () => {
               {principles.filter((_, i) => i % 2 === 0).map((principle, idx) => {
                 const Icon = principle.icon;
                 const originalIndex = idx * 2;
+                const isLast = idx === principles.filter((_, i) => i % 2 === 0).length - 1;
                 
                 return (
                   <div 
@@ -80,7 +81,9 @@ export const ApproachSection = () => {
                     <div className="hidden md:block absolute top-8 -right-1.5 w-3 h-3 rounded-full bg-primary border-2 border-background" />
                     
                     {/* Mobile vertical line */}
-                    <div className="md:hidden absolute left-5 top-0 w-px h-full bg-gradient-to-b from-border/50 via-border to-border/50" />
+                    {!isLast && (
+                      <div className="md:hidden absolute left-5 top-12 w-px h-[calc(100%-1.5rem)] bg-gradient-to-b from-border via-border to-border/50" />
+                    )}
                     
                     {/* Content */}
                     <div className="flex items-start gap-4 md:gap-3">
@@ -114,6 +117,7 @@ export const ApproachSection = () => {
               {principles.filter((_, i) => i % 2 === 1).map((principle, idx) => {
                 const Icon = principle.icon;
                 const originalIndex = idx * 2 + 1;
+                const isLast = idx === principles.filter((_, i) => i % 2 === 1).length - 1;
                 
                 return (
                   <div 
@@ -124,7 +128,9 @@ export const ApproachSection = () => {
                     <div className="hidden md:block absolute top-8 -left-1.5 w-3 h-3 rounded-full bg-primary border-2 border-background" />
                     
                     {/* Mobile vertical line */}
-                    <div className="md:hidden absolute left-5 top-0 w-px h-full bg-gradient-to-b from-border/50 via-border to-border/50" />
+                    {!isLast && (
+                      <div className="md:hidden absolute left-5 top-12 w-px h-[calc(100%-1.5rem)] bg-gradient-to-b from-border via-border to-border/50" />
+                    )}
                     
                     {/* Content */}
                     <div className="flex items-start gap-4 md:gap-3">

@@ -139,9 +139,9 @@ export const SkillsSection = () => {
               <p className="text-xs text-muted-foreground mb-3">
                 Patterns implemented in production systems
               </p>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="grid grid-cols-2 gap-1.5">
                 {architecturePatterns.map((pattern) => (
-                  <span key={pattern} className="px-2.5 py-1 rounded text-xs font-medium bg-accent/10 border border-accent/20 text-accent">
+                  <span key={pattern} className="px-2 py-1.5 rounded text-xs font-medium bg-secondary/50 text-muted-foreground border border-border/30 text-center truncate">
                     {pattern}
                   </span>
                 ))}
