@@ -1,8 +1,30 @@
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import profilePhoto from '@/assets/profile-photo.png';
+import { useState, useEffect } from 'react';
+
 export const HeroSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
+  const [scrollOpacity, setScrollOpacity] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const fadeStart = 50;
+      const fadeEnd = 200;
+      
+      if (scrollY <= fadeStart) {
+        setScrollOpacity(1);
+      } else if (scrollY >= fadeEnd) {
+        setScrollOpacity(0);
+      } else {
+        setScrollOpacity(1 - (scrollY - fadeStart) / (fadeEnd - fadeStart));
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <section
@@ -67,31 +89,31 @@ export const HeroSection = () => {
             </div>
 
             {/* Social Links */}
-            <div className={`mt-12 flex items-center gap-5 ${isVisible ? 'animate-fade-up stagger-4' : 'opacity-0'}`}>
+            <div className={`mt-12 flex items-center gap-3 ${isVisible ? 'animate-fade-up stagger-4' : 'opacity-0'}`}>
               <a
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-md bg-secondary/60 text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-200"
-                aria-label="GitHub"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
               >
-                <Github size={18} />
+                <Github size={14} />
+                <span>GitHub</span>
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-md bg-secondary/60 text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-200"
-                aria-label="LinkedIn"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
               >
-                <Linkedin size={18} />
+                <Linkedin size={14} />
+                <span>LinkedIn</span>
               </a>
               <a
                 href="mailto:hello@developer.com"
-                className="p-2.5 rounded-md bg-secondary/60 text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-200"
-                aria-label="Email"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
               >
-                <Mail size={18} />
+                <Mail size={14} />
+                <span>Email</span>
               </a>
             </div>
           </div>
@@ -126,10 +148,14 @@ export const HeroSection = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div className={`hidden lg:flex absolute bottom-12 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground ${isVisible ? 'animate-fade-up stagger-5' : 'opacity-0'}`}>
+        <div 
+          className={`hidden lg:flex absolute bottom-12 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground transition-opacity duration-300 ${isVisible ? 'animate-fade-up stagger-5' : 'opacity-0'}`}
+          style={{ opacity: isVisible ? scrollOpacity : 0 }}
+        >
           <div className="w-5 h-8 rounded-full border border-border/50 flex items-start justify-center p-1">
             <div className="w-1 h-2 rounded-full bg-primary/60 animate-bounce" />
           </div>
+          <span className="text-xs font-medium uppercase tracking-wider">Scroll</span>
         </div>
       </div>
     </section>
