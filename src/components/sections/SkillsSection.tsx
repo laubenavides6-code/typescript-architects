@@ -95,7 +95,7 @@ export const SkillsSection = () => {
               <div key={tier.id} className="glass-card p-5">
                 {/* Tier Header */}
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
+                  <div className="w-10 h-10 shrink-0 aspect-square rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
                     <Icon size={18} className="text-primary" />
                   </div>
                   <div>
@@ -113,7 +113,7 @@ export const SkillsSection = () => {
                   {tier.skills.map((skill) => (
                     <span 
                       key={skill} 
-                      className="px-2 py-1.5 rounded text-xs font-medium bg-secondary/50 text-muted-foreground border border-border/30 text-center truncate"
+                      className="px-2 py-1.5 rounded text-xs font-medium bg-secondary/50 text-muted-foreground border border-border/40 text-center truncate"
                     >
                       {skill}
                     </span>
@@ -128,7 +128,7 @@ export const SkillsSection = () => {
         <div className={`glass-card p-5 max-w-5xl mx-auto mt-6 ${isVisible ? 'animate-fade-up stagger-4' : 'opacity-0'}`}>
           <div className="flex items-start gap-3">
             <div className="shrink-0">
-              <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center">
+              <div className="w-10 h-10 aspect-square rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center">
                 <Boxes size={18} className="text-accent" />
               </div>
             </div>
@@ -141,7 +141,7 @@ export const SkillsSection = () => {
               </p>
               <div className="grid grid-cols-2 gap-1.5">
                 {architecturePatterns.map((pattern) => (
-                  <span key={pattern} className="px-2 py-1.5 rounded text-xs font-medium bg-secondary/50 text-muted-foreground border border-border/30 text-center truncate">
+                  <span key={pattern} className="px-2 py-1.5 rounded text-xs font-medium bg-secondary/50 text-muted-foreground border border-border/40 text-center truncate">
                     {pattern}
                   </span>
                 ))}
