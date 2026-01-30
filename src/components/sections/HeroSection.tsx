@@ -149,8 +149,8 @@ export const HeroSection = () => {
 
         {/* Scroll Indicator */}
         <div 
-          className={`hidden lg:flex absolute bottom-12 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground transition-opacity duration-300 ${isVisible ? 'animate-fade-up stagger-5' : 'opacity-0'}`}
-          style={{ opacity: isVisible ? scrollOpacity : 0 }}
+          className="hidden lg:flex absolute bottom-12 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground transition-opacity duration-500"
+          style={{ opacity: scrollOpacity }}
         >
           <div className="w-5 h-8 rounded-full border border-border/50 flex items-start justify-center p-1">
             <div className="w-1 h-2 rounded-full bg-primary/60 animate-bounce" />
