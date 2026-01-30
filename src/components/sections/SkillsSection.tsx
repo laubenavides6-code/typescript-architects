@@ -92,7 +92,7 @@ export const SkillsSection = () => {
             const Icon = iconMap[tier.icon] || Target;
             
             return (
-              <div key={tier.id} className="glass-card p-5">
+              <div key={tier.id} className="glass-card-hover p-5">
                 {/* Tier Header */}
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 shrink-0 aspect-square rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
@@ -125,7 +125,7 @@ export const SkillsSection = () => {
         </div>
         
         {/* Architecture Patterns - Card */}
-        <div className={`glass-card p-5 max-w-5xl mx-auto mt-6 ${isVisible ? 'animate-fade-up stagger-4' : 'opacity-0'}`}>
+        <div className={`glass-card-hover p-5 max-w-5xl mx-auto mt-6 ${isVisible ? 'animate-fade-up stagger-4' : 'opacity-0'}`}>
           <div className="flex items-start gap-3">
             <div className="shrink-0">
               <div className="w-10 h-10 aspect-square rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center">
